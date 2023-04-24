@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -40,24 +41,28 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
-publishing {
-    publications {
-        androidLibrary(MavenPublication) {
-            groupId 'com.vladsem'
-            artifactId 'greet_lib'
-//            version '1.0.0'
-            artifact("$buildDir/outputs/aar/greet-lib-release.aar")
+afterEvaluate {
+    publishing {
+        publications {
+            androidLibrary(MavenPublication) {
+                from components.release
+                groupId 'com.vladsem'
+                artifactId 'greet_lib'
+                version '1.0.0'
+                artifact("$buildDir/outputs/aar/greet-lib-release.aar")
 
-            pom.withXml {
-                // Define additional metadata for the artifact, such as the project name, description, and licenses.
-                def rootNode = asNode()
-                def pomNode = rootNode.appendNode('name', 'Greeting Library')
-                pomNode.parent().appendNode('description', 'This is a test Android greeting library.')
-                pomNode.parent().appendNode('url', 'https://github.com/SemenecVlad/AndroidGreetingLib')
-                def licensesNode = pomNode.parent().appendNode('licenses')
-                def licenseNode = licensesNode.appendNode('license')
-                licenseNode.appendNode('name', 'Apache License, Version 2.0')
-                licenseNode.appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0.txt')
+
+                pom.withXml {
+                    // Define additional metadata for the artifact, such as the project name, description, and licenses.
+                    def rootNode = asNode()
+                    def pomNode = rootNode.appendNode('name', 'Greeting Library')
+                    pomNode.parent().appendNode('description', 'This is a test Android greeting library.')
+                    pomNode.parent().appendNode('url', 'https://github.com/SemenecVlad/AndroidGreetingLib')
+                    def licensesNode = pomNode.parent().appendNode('licenses')
+                    def licenseNode = licensesNode.appendNode('license')
+                    licenseNode.appendNode('name', 'Apache License, Version 2.0')
+                    licenseNode.appendNode('url', 'https://www.apache.org/licenses/LICENSE-2.0.txt')
+                }
             }
         }
     }

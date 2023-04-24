@@ -46,7 +46,7 @@ publishing {
             groupId 'com.vladsem'
             artifactId 'greet_lib'
 //            version '1.0.0'
-            artifact("$buildDir/outputs/aar/mylibrary-release.aar")
+            artifact("$buildDir/outputs/aar/greet-lib-release.aar")
 
             pom.withXml {
                 // Define additional metadata for the artifact, such as the project name, description, and licenses.

@@ -48,12 +48,9 @@ afterEvaluate {
                 from components.release
                 groupId 'com.vladsem'
                 artifactId 'greet_lib'
-//                version '1.0.7'
+                version '1.0.9'
 
-                artifact("$buildDir/outputs/aar/greet-lib-release.aar") {
-                    extension 'aar'
-                }
-
+                artifact(source: file("$buildDir/outputs/aar/greet-lib-release.aar"), classifier: 'release', extension: 'aar')
 
                 pom.withXml {
                     // Define additional metadata for the artifact, such as the project name, description, and licenses.

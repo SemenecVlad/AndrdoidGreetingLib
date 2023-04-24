@@ -48,7 +48,7 @@ afterEvaluate {
                 from components.release
                 groupId 'com.vladsem'
                 artifactId 'greet_lib'
-                version '1.0.7'
+//                version '1.0.7'
 
                 artifact("$buildDir/outputs/aar/greet-lib-release.aar") {
                     extension 'aar'

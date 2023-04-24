@@ -1,7 +1,6 @@
 package com.vladsem.greet_lib
 
 import android.annotation.SuppressLint
-import android.content.Context
 
 class Greet {
     var initialized = false
